@@ -13,7 +13,7 @@ export default {
   data() {
     return {
       xmlFilter: `
-      <?xml version="1.0"?>
+      <?xml version="2.0.0"?>
       <GetFeature
         xmlns:gml="http://www.opengis.net/gml/3.2"
         xmlns="http://www.opengis.net/wfs/2.0"
@@ -24,14 +24,6 @@ export default {
         typeNames="fpd:all_boundaries_oktmo"
         srsName="EPSG:3857"
       >
-        <fes:Filter>
-          <fes:Or> 
-          <fes:PropertyIsLike escapeChar="/" singleChar="?" wildCard="*" matchCase="true">
-            <fes:ValueReference> oktmo </fes:ValueReference>
-            <fes:Literal> 41612000 </fes:Literal>
-          </fes:PropertyIsLike>
-         </fes:Or>
-        </fes:Filter>
         
       </Query>
       </GetFeature>
@@ -45,6 +37,7 @@ export default {
         headers: { 'Content-Type': 'text/xml' }
       }
       const { data: features } = await axios.post('/geoserver/wfs?', this.xmlFilter, config)
+      // const { data: features } = await axios.post('geoserver/wfs?service=WFS&version=1.0&request=GetFeature&typenames=fpd:all_boundaries_oktmo')
       console.log(features)
     }
   }

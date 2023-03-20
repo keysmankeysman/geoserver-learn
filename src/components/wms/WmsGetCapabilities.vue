@@ -1,7 +1,7 @@
 <template>
   <div>
       
-      <button @click="sendRequest()">Отправить get запрос</button>  
+      <button @click="sendRequest()">Отправить capabilities запрос</button>  
 
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     async sendRequest() {
-      axios.get('/geoserver/wms?service=WMS&version=1.1.1&request=DescribeLayer&layers=fpd:all_boundaries_oktmo&output_format=application/json')
+      axios.get('/geoserver/wms?service=wms&request=GetCapabilities')
         .then(res => console.log(res))
     }
   }
